@@ -8,14 +8,23 @@ body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
     
-    /* EFECTO DE PROFUNDIDAD (GRID) */
-    /* Crea rayas blancas muy sutiles vertical y horizontalmente */
+    /* --- FONDO ANIMADO DE INGENIERÍA --- */
+    /* Cuadrícula técnica */
     background-image: 
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
     background-size: 50px 50px; /* Tamaño de los cuadros */
-    background-position: center center;
+    
+    /* Esta línea activa la magia: Animación infinita */
+    animation: moveGrid 4s linear infinite;
+    
     min-height: 100vh;
+}
+
+/* Definimos el movimiento del fondo (Bucle Eterno) */
+@keyframes moveGrid {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; } /* Se mueve el tamaño exacto del cuadro para que sea imperceptible el corte */
 }
 
 /* --- LAYOUT --- */
@@ -29,8 +38,8 @@ body {
 header {
     padding: 80px 0 40px 0;
     text-align: center;
-    /* Un degradado suave arriba para que el texto se lea bien sobre la rejilla */
-    background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0) 100%);
+    /* Fondo semi-transparente para que el texto resalte sobre la rejilla en movimiento */
+    background: radial-gradient(circle, rgba(5,5,5,0.9) 0%, rgba(5,5,5,0) 70%);
 }
 
 h1 { 
@@ -39,6 +48,7 @@ h1 {
     letter-spacing: -1px;
     margin-bottom: 10px; 
     color: #fff;
+    text-shadow: 0 0 20px rgba(255,255,255,0.2);
 }
 
 .subtitle { 
@@ -55,65 +65,70 @@ h1 {
     margin: 0 auto 30px auto; 
     color: #cccccc; 
     font-size: 1rem;
+    background-color: rgba(0,0,0,0.6); /* Placa oscura para leer mejor */
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
 }
 
 /* --- BOTÓN ESTILO YOUTUBE --- */
 .btn {
     display: inline-block;
-    background-color: #ff0000; /* Rojo YouTube */
+    background-color: #ff0000;
     color: #fff;
     padding: 12px 30px;
     text-decoration: none;
     font-weight: bold;
-    border-radius: 30px; /* Bordes redondeados modernos */
+    border-radius: 30px;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4); /* Resplandor rojo */
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.4);
 }
 
 .btn:hover { 
     background-color: #cc0000; 
-    transform: scale(1.05); /* Crece un poquito al pasar el mouse */
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8); /* Más brillo al pasar el mouse */
 }
 
-/* --- PORTAFOLIO GRID (VERTICAL) --- */
+/* --- PORTAFOLIO GRID --- */
 .portfolio { padding: 40px 0; }
 
 h2 { 
     text-align: center; 
     margin-bottom: 50px; 
     font-size: 2rem;
-    border-bottom: 2px solid #ff0000; /* Línea roja */
+    border-bottom: 2px solid #ff0000;
     display: inline-block; 
     padding-bottom: 5px;
+    background-color: rgba(0,0,0,0.8); /* Fondo negro tras el texto */
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .grid {
     display: grid;
-    /* Ajuste automático: columnas de mínimo 280px */
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 40px;
 }
 
 .card {
-    background: #111; /* Tarjeta casi negra */
+    background: #0a0a0a; /* Fondo muy oscuro */
     border: 1px solid #333;
     border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .card:hover { 
     transform: translateY(-10px); 
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.15); /* Sombra roja sutil */
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2); 
     border-color: #ff0000;
 }
 
-/* --- EL CAMBIO CLAVE: FORMATO VERTICAL 9:16 --- */
+/* --- FORMATO VERTICAL 9:16 --- */
 .video-wrapper {
     position: relative;
     width: 100%;
-    /* 16 / 9 = 56.25% (Horizontal) */
-    /* 9 / 16 = 177.77% (Vertical / Shorts) */
     padding-bottom: 177.77%; 
     background: #000;
 }
@@ -141,4 +156,5 @@ footer {
     padding: 60px 20px; 
     color: #444; 
     font-size: 0.8rem; 
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
 }
