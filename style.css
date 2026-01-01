@@ -21,10 +21,10 @@ body {
     100% { background-position: 50px 50px; }
 }
 
-/* --- LAYOUT (AQUÍ ESTÁ EL CAMBIO DE TAMAÑO) --- */
+/* --- LAYOUT --- */
 .container {
-    /* Antes era 1000px, ahora usamos el 95% del ancho para llenar la pantalla */
     max-width: 95%; 
+    /* Agregamos un tope máximo de seguridad para monitores Ultra-Wide */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -84,7 +84,7 @@ h1 {
     box-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
 }
 
-/* --- GRID DE VIDEOS VERTICALES (FILAS DE 4) --- */
+/* --- GRID DE VIDEOS --- */
 .portfolio { padding: 40px 0; }
 
 h2 { 
@@ -99,20 +99,33 @@ h2 {
 
 .grid-vertical {
     display: grid;
-    /* En PC forzamos 4 columnas iguales */
+    /* Forzamos 4 columnas, pero con un ancho máximo por tarjeta */
     grid-template-columns: repeat(4, 1fr); 
-    gap: 20px; /* Espacio entre videos */
+    gap: 20px;
     margin-bottom: 60px;
+    width: 100%;
 }
 
-/* Responsive: En tablets 2 columnas, en celular 1 columna */
-@media (max-width: 1024px) {
-    .grid-vertical { grid-template-columns: repeat(2, 1fr); }
+/* --- RESPONSIVE --- */
+/* Tablets grandes y laptops pequeñas */
+@media (max-width: 1200px) {
+    .grid-vertical { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Tablets normales */
+@media (max-width: 900px) {
+    .grid-vertical { grid-template-columns: repeat(2, 1fr); }
+    h1 { font-size: 2.5rem; }
+}
+
+/* Celulares */
 @media (max-width: 600px) {
     .grid-vertical { grid-template-columns: 1fr; }
+    h1 { font-size: 2rem; }
+    .container { max-width: 100%; }
 }
 
+/* --- TARJETAS (CARDS) --- */
 .card {
     background: #0a0a0a;
     border: 1px solid #333;
@@ -121,58 +134,62 @@ h2 {
     transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
+    height: 100%; /* Asegura altura igual en filas */
 }
 
+/* EFECTO NEÓN AL PASAR MOUSE */
 .card:hover { 
-    transform: translateY(-10px); 
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2); 
+    transform: translateY(-8px); 
+    /* Sombra roja difuminada (efecto neón) */
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2), 0 0 15px rgba(255, 0, 0, 0.4); 
     border-color: #ff0000;
 }
 
 /* --- FORMATOS DE VIDEO --- */
 
-/* Formato Vertical (9:16) - Alto */
+/* Vertical (9:16) */
 .video-wrapper-vertical {
     position: relative;
     width: 100%;
-    padding-bottom: 177.77%; /* Ratio TikTok */
+    padding-bottom: 177.77%; 
     background: #000;
 }
 
-/* Formato Horizontal (16:9) - Ancho */
+/* Horizontal (16:9) */
 .video-wrapper-horizontal {
     position: relative;
     width: 100%;
-    padding-bottom: 56.25%; /* Ratio YouTube Normal */
+    padding-bottom: 56.25%; 
     background: #000;
 }
 
-.video-wrapper-vertical iframe, .video-wrapper-horizontal iframe {
+.video-wrapper-vertical iframe, .video-wrapper-horizontal iframe, .video-wrapper-vertical img {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
 }
 
 .card-content {
     padding: 15px;
-    flex-grow: 1; /* Para que todos los textos se alineen bien */
+    flex-grow: 1; 
 }
 
 .card h3 { 
     font-size: 1.1rem; 
     color: #fff;
     margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .card p { 
     font-size: 0.85rem; 
-    color: #999; 
+    color: #a0a0a0; 
     line-height: 1.4;
 }
 
-/* --- SECCIÓN ESPECIAL VIDEO HORIZONTAL (FIVERR) --- */
+/* --- SECCIÓN HORIZONTAL --- */
 .horizontal-section {
-    max-width: 800px; /* Limitamos el ancho para que no se vea gigante */
-    margin: 0 auto;   /* Centrado */
+    max-width: 800px; 
+    margin: 0 auto; 
 }
 
 /* --- FOOTER --- */
