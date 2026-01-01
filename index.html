@@ -20,9 +20,16 @@
                 and narrative pacing for international brands and creators.
             </p>
             
-            <a href="mailto:jesuscontrerasjss2016@gmail.com?subject=Video%20Editing%20Inquiry%20-%20Let's%20Talk" class="btn">
+            <a href="mailto:jesuscontrerasjss2016@gmail.com?subject=Video%20Editing%20Inquiry%20-%20Let's%20Talk" 
+               class="btn" 
+               id="emailBtn"
+               onclick="handleEmailClick(event)">
                 Let's Create
             </a>
+            
+            <p style="margin-top: 15px; font-size: 0.8rem; color: #666;">
+                Or email me at: <span style="color: #fff;">jesuscontrerasjss2016@gmail.com</span>
+            </p>
         </div>
     </header>
 
@@ -107,7 +114,6 @@
                     <a href="https://www.youtube.com/shorts/xf18OHZJUx0" target="_blank" style="text-decoration: none; color: inherit; display: block; height: 100%;">
                         <div class="video-wrapper-vertical">
                             <img src="https://img.youtube.com/vi/xf18OHZJUx0/hqdefault.jpg" alt="Naruto Edit" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
-                            
                             <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: white; text-shadow: 0 0 10px rgba(0,0,0,0.5);">
                                 ▶
                             </div>
@@ -119,7 +125,9 @@
                     </a>
                 </div>
 
-            </div> <div class="horizontal-section">
+            </div>
+
+            <div class="horizontal-section">
                 <div class="card">
                     <div class="video-wrapper-horizontal">
                         <iframe src="https://www.youtube.com/embed/tFTaf0sRv8g" title="Multifaceted Business Solutions" loading="lazy" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -139,7 +147,6 @@
             <a href="https://x.com/xicoborax" target="_blank" title="Send me a DM on X (@xicoborax)">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
             </a>
-
             <a href="https://discord.com/users/462671794944606208" target="_blank" title="Chat on Discord">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 13.68 13.68 0 0 0-.645 1.332 18.33 18.33 0 0 0-5.412 0 13.882 13.882 0 0 0-.65-1.333.068.068 0 0 0-.078-.037 19.743 19.743 0 0 0-4.888 1.515.071.071 0 0 0-.03.028C1.75 8.943.914 13.435 1.328 17.892a.08.08 0 0 0 .032.057 19.9 19.9 0 0 0 6.007 3.018.077.077 0 0 0 .084-.027 14.156 14.156 0 0 0 1.233-1.996.076.076 0 0 0-.041-.106 9.387 9.387 0 0 1-2.91-1.391.077.077 0 0 1-.008-.126c.205-.154.407-.315.602-.48a.076.076 0 0 1 .082-.016c6.236 2.868 12.986 0 12.986 0a.077.077 0 0 1 .083.016c.194.166.398.327.603.481a.077.077 0 0 1-.008.126 9.42 9.42 0 0 1-2.912 1.39.076.076 0 0 0-.041.107 14.482 14.482 0 0 0 1.23 1.995.077.077 0 0 0 .085.028 19.863 19.863 0 0 0 6.012-3.018.078.078 0 0 0 .032-.056c.557-5.914-1.298-9.018-1.298-9.018a.075.075 0 0 0-.028-.028zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.418 2.157-2.418 1.21 0 2.176 1.096 2.157 2.418 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.418 2.157-2.418 1.21 0 2.176 1.096 2.157 2.418 0 1.334-.946 2.419-2.157 2.419z"></path></svg>
             </a>
@@ -148,6 +155,39 @@
         <p class="discord-user">Discord: jes_treras3653</p>
         <p>© 2025 Jesús Contreras. Built with code.</p>
     </footer>
+
+    <script>
+        function handleEmailClick(e) {
+            // 1. Prevenir comportamiento default temporalmente para asegurar la copia
+            // (Opcional, pero ayuda a que el usuario vea el cambio de color)
+            
+            const btn = document.getElementById('emailBtn');
+            const email = "jesuscontrerasjss2016@gmail.com";
+            
+            // 2. Copiar al portapapeles
+            navigator.clipboard.writeText(email).then(() => {
+                // Éxito: Cambiar botón a Verde y cambiar texto
+                const originalText = btn.innerText;
+                const originalColor = getComputedStyle(btn).backgroundColor;
+
+                btn.innerText = "Email Copied to Clipboard!";
+                btn.style.backgroundColor = "#28a745"; // Verde éxito
+                btn.style.borderColor = "#28a745";
+
+                // 3. Volver a la normalidad después de 3 segundos
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.style.backgroundColor = ""; // Vuelve al color del CSS
+                    btn.style.borderColor = "";
+                }, 3000);
+            }).catch(err => {
+                console.error('Error al copiar: ', err);
+            });
+            
+            // 4. El enlace mailto se ejecutará de todas formas gracias al href,
+            // así que si tienen app, se abrirá. Si no, al menos ya tienen el correo copiado.
+        }
+    </script>
 
 </body>
 </html>
