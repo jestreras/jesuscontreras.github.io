@@ -152,43 +152,31 @@
             </a>
         </div>
         
-       
+        <p class="discord-user">Discord: jes_treras3653</p>
         <p>© 2025 Jesús Contreras. Built with code.</p>
     </footer>
 
     <script>
         function handleEmailClick(e) {
-            // 1. Prevenir comportamiento default temporalmente para asegurar la copia
-            // (Opcional, pero ayuda a que el usuario vea el cambio de color)
-            
             const btn = document.getElementById('emailBtn');
             const email = "jesuscontrerasjss2016@gmail.com";
             
-            // 2. Copiar al portapapeles
             navigator.clipboard.writeText(email).then(() => {
-                // Éxito: Cambiar botón a Verde y cambiar texto
                 const originalText = btn.innerText;
-                const originalColor = getComputedStyle(btn).backgroundColor;
-
                 btn.innerText = "Email Copied to Clipboard!";
-                btn.style.backgroundColor = "#28a745"; // Verde éxito
+                btn.style.backgroundColor = "#28a745"; 
                 btn.style.borderColor = "#28a745";
 
-                // 3. Volver a la normalidad después de 3 segundos
                 setTimeout(() => {
                     btn.innerText = originalText;
-                    btn.style.backgroundColor = ""; // Vuelve al color del CSS
+                    btn.style.backgroundColor = ""; 
                     btn.style.borderColor = "";
                 }, 3000);
             }).catch(err => {
                 console.error('Error al copiar: ', err);
             });
-            
-            // 4. El enlace mailto se ejecutará de todas formas gracias al href,
-            // así que si tienen app, se abrirá. Si no, al menos ya tienen el correo copiado.
         }
     </script>
 
 </body>
 </html>
-
